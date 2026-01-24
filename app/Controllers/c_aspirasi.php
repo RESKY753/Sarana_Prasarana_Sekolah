@@ -18,7 +18,13 @@ if (isset($_POST['login_siswa'])) {
 
     $tambah_aspirasi = $aspirasi->tambah_aspirasi($id_siswa, $judul_aspirasi, $ket_aspirasi, $kategori,$lokasi);
 
-
+    $_SESSION['alert'] = [
+        'type'    => 'success', // jenis alert (success, error, warning, info)
+        'title'   => 'Berhasil', // judul alert
+        'message' => 'Berhasil di tambahkan', // isi pesan alert
+        'icon' => 'success', // isi pesan alert
+        'autoClose' => 4000,
+    ];
     header("location:../Views/v_home_siswa.php");
     exit;
 }
