@@ -8,7 +8,7 @@ $aspirasi = new m_aspirasi();
 //$aspirasis = $aspirasi->tampil_data();
 //$kategoris = $kategori->tampil_kategori();
 
-if (isset($_POST['login_siswa'])) {
+if (isset($_POST['tambah_aspirasi'])) {
     $id_siswa = $_SESSION['id_siswa'];
     $judul_aspirasi = $_POST['judul_aspirasi'];
     $ket_aspirasi = $_POST['ket_aspirasi'];

@@ -1,6 +1,8 @@
 <?php
-
 session_start();
+// echo "<pre>";
+// var_dump($_SESSION);
+// echo "<pre>";
 include_once '../Controllers/c_data.php';
 
 ?>
@@ -27,7 +29,7 @@ include_once '../Controllers/c_data.php';
             <ul>
                 <a href="v_aspirasi.php" class="text-decoration-none fw-bold text-dark">Ajukan keluhan</a><br>
                 <hr>
-                <a href="" class="text-decoration-none fw-bold text-dark">Status Keluhan</a><br>
+                <a href="../Controllers/c_histori_aspirasi.php?id=<?= $_SESSION['id_siswa'] ?>" class="text-decoration-none fw-bold text-dark">Status Keluhan</a><br>
                 <hr>
                 <form action="../Controllers/c_logout.php" method="post">
                     <a href="../Views/v_logout.php" class=" text-decoration-none btn bg-white border-0 text-danger fw-bold bg-light">Logout</a><br>
@@ -37,11 +39,17 @@ include_once '../Controllers/c_data.php';
         </aside>
         <main class="item main">
             <h5 class="fw-bold">Keluhan Semua Siswa</h5>
-            <li class="nav-item dropdown list-unstyled">
-                <a class="nav-link dropdown-toggle mb-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown">
+                <a class="mt-4 mb-2 btn w-25 d-flex justify-content-between align-items-center fw-semibold"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style="background-color:#f1f3f5;">
                     Filter
+                    <i class="fa-solid fa-chevron-down"></i>
                 </a>
-                <ul class="dropdown-menu">
+
+                <ul class="dropdown-menu w-100 mt-1">
                     <li><a class="dropdown-item" href="#">Hari ini</a></li>
                     <li><a class="dropdown-item" href="#">Kemarin</a></li>
                     <li><a class="dropdown-item" href="#">Minggu Ini</a></li>
@@ -49,7 +57,7 @@ include_once '../Controllers/c_data.php';
                     <li><a class="dropdown-item" href="#">Bulan Ini</a></li>
                     <li><a class="dropdown-item" href="#">Bulan Lalu</a></li>
                 </ul>
-            </li>
+            </div>
             <div class="d-flex flex-column gap-3">
                 <div class="d-flex flex-column gap-3">
                     <?php $no = 1;
