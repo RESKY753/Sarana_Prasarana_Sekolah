@@ -30,7 +30,7 @@ try {
                     'message' => 'Kata sandi atau password salah!', // isi pesan alert
                     'autoClose' => 4000, 
                 ];
-                header("location:../Views/login.php");
+                header("location:../Views/v_login.php");
                 exit;
             }
         }else{
@@ -40,7 +40,7 @@ try {
                 'message' => 'Kata sandi atau password anda salah!', // isi pesan alert
                 'autoClose' => 4000,
             ];
-            header("location:../Views/login.php");
+            header("location:../Views/v_login.php");
             exit;
         }
     }

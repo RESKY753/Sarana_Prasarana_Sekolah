@@ -15,13 +15,17 @@ class m_aspirasi
     {
         $koneksi = new m_koneksi();
         $sql = "SELECT 
-                aspirasi.id_aspirasi,
-                aspirasi.judul_aspirasi,
-                aspirasi.tanggal_lapor,
-                progres_aspirasi.status
-                FROM aspirasi
-                LEFT JOIN progres_aspirasi
-                ON aspirasi.id_aspirasi = progres_aspirasi.id_aspirasi";
+                a.id_aspirasi,
+                a.judul_aspirasi,
+                a.tanggal_lapor,
+                a.lokasi,
+                p.status,
+                k.ket_kategori
+                FROM aspirasi a
+                LEFT JOIN progres_aspirasi p
+                ON a.id_aspirasi = p.id_aspirasi
+                LEFT JOIN kategori k
+                ON a.id_kategori = k.id_kategori";
 
         $query = mysqli_query($koneksi->koneksi, $sql);
         if ($query->num_rows > 0) {
@@ -41,6 +45,7 @@ class m_aspirasi
                 aspirasi.lokasi,
                 aspirasi.ket_aspirasi,
                 progres_aspirasi.status,
+                progres_aspirasi.tanggal_update,
                 progres_aspirasi.ket_progres,
                 progres_aspirasi.umpan_balik,
                 kategori.ket_kategori
@@ -54,7 +59,8 @@ class m_aspirasi
         return mysqli_fetch_object($query);
     }
 
-    function tampil_data_by_id_siswa($id_siswa){
+    function tampil_data_by_id_siswa($id_siswa)
+    {
         $koneksi = new m_koneksi();
         $sql = "SELECT 
                 aspirasi.judul_aspirasi,
@@ -79,6 +85,5 @@ class m_aspirasi
             }
             return $result;
         }
-        
     }
 }
