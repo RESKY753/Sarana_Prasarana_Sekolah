@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (!isset($_SESSION['result']['id_siswa'])) {
+    include_once '../Views/Layouts/Templates/Login_dulu.php';
+    exit();
+}
+
 
 include_once '../Models/m_aspirasi.php';
 
@@ -25,6 +30,6 @@ if (isset($_POST['tambah_aspirasi'])) {
         'icon' => 'success', // isi pesan alert
         'autoClose' => 4000,
     ];
-    header("location:../Views/v_home_siswa.php");
+    header("location:../Controllers/c_data.php");
     exit;
 }

@@ -1,10 +1,11 @@
 <?php
-session_start();
 // echo "<pre>";
 // var_dump($_SESSION);
 // echo "<pre>";
-include_once '../Controllers/c_data.php';
-
+if (!isset($_SESSION['result']['id_siswa'])) {
+    include_once 'Layouts/Templates/Login_dulu.php';
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +28,7 @@ include_once '../Controllers/c_data.php';
         <header class="item header">Pengaduan Sarana Prasarana Sekolah</header>
         <aside class="item sidebar ">
             <ul>
-                <a href="v_aspirasi.php" class="text-decoration-none fw-bold text-dark">Ajukan keluhan</a><br>
+                <a href="../Views/v_aspirasi.php" class="text-decoration-none fw-bold text-dark">Ajukan keluhan</a><br>
                 <hr>
                 <a href="../Controllers/c_histori_aspirasi.php?id=<?= $_SESSION['id_siswa'] ?>" class="text-decoration-none fw-bold text-dark">Status Keluhan</a><br>
                 <hr>
@@ -48,15 +49,17 @@ include_once '../Controllers/c_data.php';
                     Filter
                     <i class="fa-solid fa-chevron-down"></i>
                 </a>
-
-                <ul class="dropdown-menu w-100 mt-1">
-                    <li><a class="dropdown-item" href="#">Hari ini</a></li>
-                    <li><a class="dropdown-item" href="#">Kemarin</a></li>
-                    <li><a class="dropdown-item" href="#">Minggu Ini</a></li>
-                    <li><a class="dropdown-item" href="#">Minggu Lalu</a></li>
-                    <li><a class="dropdown-item" href="#">Bulan Ini</a></li>
-                    <li><a class="dropdown-item" href="#">Bulan Lalu</a></li>
-                </ul>
+                <form action="">
+                    <ul class="dropdown-menu w-100 mt-1">
+                        <li><button name="filter" class="dropdown-item" value="semua">Semua</button></li>
+                        <li><button name="filter" class="dropdown-item" value="hari_ini">Hari ini</button></li>
+                        <li><button name="filter" class="dropdown-item" value="kemarin">Kemarin</button></li>
+                        <li><button name="filter" class="dropdown-item" value="minggu_ini">Minggu Ini</button></li>
+                        <li><button name="filter" class="dropdown-item" value="minggu_lalu">Minggu Lalu</button></li>
+                        <li><button name="filter" class="dropdown-item" value="bulan_ini">Bulan Ini</button></li>
+                        <li><button name="filter" class="dropdown-item" value="bulan_lalu">Bulan Lalu</button></li>
+                    </ul>
+                </form>
             </div>
             <div class="d-flex flex-column gap-3">
                 <div class="d-flex flex-column gap-3">
@@ -78,9 +81,6 @@ include_once '../Controllers/c_data.php';
             </div>
     </div>
     </main>
-    <footer class="item footer">
-        foooter
-    </footer>
     </div>
 
 </body>

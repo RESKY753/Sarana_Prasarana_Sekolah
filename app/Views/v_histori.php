@@ -1,5 +1,9 @@
+
 <?php
-include_once '../Controllers/c_histori_aspirasi.php';
+if (!isset($_SESSION['result']['id_siswa'])) {
+include_once 'Layouts/Templates/Login_dulu.php';
+exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +24,7 @@ include_once '../Controllers/c_histori_aspirasi.php';
 <body style="font-family: Arial, Helvetica, sans-serif;">
     <div class="d-flex flex-column gap-3">
         <header class="item header position-relative px-3">
-            <a href="../Views/v_home_siswa.php"
+            <a href="../Controllers/c_data.php"
                 class="position-absolute start-0 top-50 translate-middle-y ms-3
               text-white fw-bold fs-4 text-decoration-none">
                 &larr;
@@ -42,15 +46,17 @@ include_once '../Controllers/c_histori_aspirasi.php';
                         Filter
                         <i class="fa-solid fa-chevron-down"></i>
                     </a>
-
-                    <ul class="dropdown-menu w-100 mt-1">
-                        <li><a class="dropdown-item" href="#">Hari ini</a></li>
-                        <li><a class="dropdown-item" href="#">Kemarin</a></li>
-                        <li><a class="dropdown-item" href="#">Minggu Ini</a></li>
-                        <li><a class="dropdown-item" href="#">Minggu Lalu</a></li>
-                        <li><a class="dropdown-item" href="#">Bulan Ini</a></li>
-                        <li><a class="dropdown-item" href="#">Bulan Lalu</a></li>
-                    </ul>
+                    <form action="../Controllers/c_histori_aspirasi.php">
+                        <ul class="dropdown-menu w-100 mt-1">
+                            <li><button name="filter" class="dropdown-item" value="semua">Semua</button></li>
+                            <li><button name="filter" class="dropdown-item" value="hari_ini">Hari ini</button></li>
+                            <li><button name="filter" class="dropdown-item" value="kemarin">Kemarin</button></li>
+                            <li><button name="filter" class="dropdown-item" value="minggu_ini">Minggu Ini</button></li>
+                            <li><button name="filter" class="dropdown-item" value="minggu_lalu">Minggu Lalu</button></li>
+                            <li><button name="filter" class="dropdown-item" value="bulan_ini">Bulan Ini</button></li>
+                            <li><button name="filter" class="dropdown-item" value="bulan_lalu">Bulan Lalu</button></li>
+                        </ul>
+                    </form>
                 </div>
             </div>
         </div>

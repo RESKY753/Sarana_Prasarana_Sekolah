@@ -1,6 +1,8 @@
 <?php
-session_start();
-include_once '../Controllers/c_data_aspirasi_admin.php';
+if (!isset($_SESSION['result']['id_admin'])) {
+  include_once 'Layouts/Templates/template.php';
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -36,9 +38,9 @@ include_once '../Controllers/c_data_aspirasi_admin.php';
           <li class="nav-item"><a class="nav-link" href="#">Data Aspirasi</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Status Penyelesaian</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Umpan Balik</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Histori Aspirasi</a></li>
+          <li class="nav-item"><a class="nav-link" href="../Controllers/c_data_aspirasi_admin.php?histori">Histori Aspirasi</a></li>
           <li class="nav-item">
-            <form action="../Controllers/c_logout.php" method="post">
+            <form action="../Controllers/c_logout_admin.php" method="post">
               <a href="../Views/v_logout.php" class="nav-link" name="logout_admin">Logout</a><br>
             </form>
           </li>
@@ -74,9 +76,35 @@ include_once '../Controllers/c_data_aspirasi_admin.php';
           </div>
         </div>
         <div class="card mb-3">
-          <div class="card-header fw-bold">
-            Filter Data Aspirasi
+          <div class="card-header fw-bold d-flex justify-content-between align-items-center">
+            <div>
+              Filter Data Aspirasi
+            </div>
+
+            <div class="dropdown">
+              <a class="btn d-flex justify-content-between align-items-center fw-semibold"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="background-color:#f1f3f5; min-width:150px;">
+                Filter
+                <i class="fa-solid fa-chevron-down ms-2"></i>
+              </a>
+
+              <form action="">
+                <ul class="dropdown-menu mt-1">
+                  <li><button name="filter" class="dropdown-item" value="semua">Semua</button></li>
+                  <li><button name="filter" class="dropdown-item" value="hari_ini">Hari ini</button></li>
+                  <li><button name="filter" class="dropdown-item" value="kemarin">Kemarin</button></li>
+                  <li><button name="filter" class="dropdown-item" value="minggu_ini">Minggu Ini</button></li>
+                  <li><button name="filter" class="dropdown-item" value="minggu_lalu">Minggu Lalu</button></li>
+                  <li><button name="filter" class="dropdown-item" value="bulan_ini">Bulan Ini</button></li>
+                  <li><button name="filter" class="dropdown-item" value="bulan_lalu">Bulan Lalu</button></li>
+                </ul>
+              </form>
+            </div>
           </div>
+
 
           <div class="card-body">
             <form method="get" class="row g-3 align-items-end">
@@ -143,40 +171,41 @@ include_once '../Controllers/c_data_aspirasi_admin.php';
           <div class="card-header fw-bold">
             Daftar Aspirasi Siswa
           </div>
-
-          <div class="card-body">
-            <table class="table table-bordered table-hover align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th>Tanggal</th>
-                  <th>Judul Aspirasi</th>
-                  <th>Kategori</th>
-                  <th>Lokasi</th>
-                  <th>Status</th>
-                  <th width="120">Aksi</th>
-                </tr>
-              </thead>
-              <?php foreach ($aspirasi_admin as $data) : ?>
-                <tbody>
-                  <tr>
-                    <td><?= $data->tanggal_lapor ?></td>
-                    <td><?= $data->judul_aspirasi ?></td>
-                    <td><?= $data->ket_kategori ?></td>
-                    <td><?= $data->lokasi ?></td>
-                    <td>
-                      <span class="badge bg-warning"><?= $data->status ?></span>
-                    </td>
-                    <td>
-                      <a href="../Controllers/c_data_aspirasi_admin.php?id=<?= $data->id_aspirasi ?>" class="btn btn-sm btn-primary">
-                        Lihat
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              <?php endforeach; ?>
-            </table>
-          </div>
         </div>
+
+        <div class="card-body">
+          <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Tanggal</th>
+                <th>Judul Aspirasi</th>
+                <th>Kategori</th>
+                <th>Lokasi</th>
+                <th>Status</th>
+                <th width="120">Aksi</th>
+              </tr>
+            </thead>
+            <?php foreach ($aspirasi_admin as $data) : ?>
+              <tbody>
+                <tr>
+                  <td><?= $data->tanggal_lapor ?></td>
+                  <td><?= $data->judul_aspirasi ?></td>
+                  <td><?= $data->ket_kategori ?></td>
+                  <td><?= $data->lokasi ?></td>
+                  <td>
+                    <span class="badge bg-warning"><?= $data->status ?></span>
+                  </td>
+                  <td>
+                    <a href="../Controllers/c_data_aspirasi_admin.php?id=<?= $data->id_aspirasi ?>" class="btn btn-sm btn-primary">
+                      Lihat
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            <?php endforeach; ?>
+          </table>
+        </div>
+      </div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/gh/hanzcode1/MyAlert@main/script.js"></script>

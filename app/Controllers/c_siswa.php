@@ -23,7 +23,7 @@ try {
                 'icon' => 'success', // isi pesan alert
                 'autoClose' => 4000,
                 ];
-                header("location:../Views/v_home_siswa.php");
+                header("location:../Controllers/c_data.php");
                 exit;
             }else{
                 $_SESSION['alert'] = [

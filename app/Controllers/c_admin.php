@@ -21,7 +21,7 @@ try {
                 'icon' => 'success', // isi pesan alert
                 'autoClose' => 4000,
                 ];
-                header("location:../Views/v_home_admin.php");
+                header("location:../Controllers/c_data_aspirasi_admin.php");
                 exit;
             }else{
                 $_SESSION['alert'] = [

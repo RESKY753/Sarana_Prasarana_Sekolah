@@ -1,3 +1,6 @@
+<?php
+include_once 'app/Controllers/c_status.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,19 +22,19 @@
             <div class="col-md-4">
                 <div class="p-4 rounded-4 fw-bold text-warning-emphasis bg-warning-subtle">
                     <h5 class="card-title">Menunggu</h5>
-                    <p class="card-text">1</p>
+                    <p class="card-text"><?= $totalstatus['menunggu'] ?></p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="p-4 rounded-4 fw-bold text-warning-emphasis bg-primary-subtle">
                     <h5 class="card-title">Di Proses</h5>
-                    <p class="card-text">1</p>
+                    <p class="card-text"><?= $totalstatus['proses'] ?></p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="p-4 rounded-4 fw-bold text-warning-emphasis bg-success-subtle">
                     <h5 class="card-title">Selesai</h5>
-                    <p class="card-text">1</p>
+                    <p class="card-text"><?= $totalstatus['selesai'] ?></p>
                 </div>
             </div>
         </div>

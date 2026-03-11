@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['result']['id_siswa'])) {
+    include_once 'Layouts/Templates/Login_dulu.php';
+    exit();
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -15,7 +21,7 @@
 
             <!-- Header -->
             <div class="card-header bg-primary text-white d-flex align-items-center">
-                <a href="../Views/v_home_siswa.php"
+                <a href="../Controllers/c_data.php"
                     class="text-white text-decoration-none me-3 fw-bold">
                     &larr;
                 </a>

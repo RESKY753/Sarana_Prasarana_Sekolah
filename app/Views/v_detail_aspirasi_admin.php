@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['result']['id_admin'])) {
+    include_once 'Layouts/Templates/template.php';
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -45,7 +51,7 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     <strong><?= $aspirasi_by_id->tanggal_update ?></strong> —
-                    <span class="badge bg-warning" ><?= $aspirasi_by_id->status?></span><br>
+                    <span class="badge bg-warning"><?= $aspirasi_by_id->status ?></span><br>
                     <?= $aspirasi_by_id->ket_progres ?>
                 </li>
             </ul>
@@ -57,7 +63,8 @@
         <div class="card-header fw-bold">Update Status</div>
         <div class="card-body">
             <form method="post" action="../Controllers/c_progres_aspirasi.php">
-                <input type="hidden" name="id_aspirasi">
+                <input type="hidden" name="id_progres" value="<?= $aspirasi_by_id->id_progres ?>">
+                <input type="hidden" name="id_aspirasi" value="<?= $id ?>">
 
                 <div class="mb-3">
                     <label class="form-label">Status Baru</label>
@@ -76,10 +83,9 @@
                         <option value="selesai" <?= $aspirasi_by_id->status == 'selesai' ? 'selected' : '' ?>>
                             Selesai
                         </option>
-                        
+
                     </select>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label">Keterangan Progres</label>
                     <textarea
@@ -100,7 +106,7 @@
                         placeholder="Tulis umpan balik untuk siswa..."></textarea>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
-                    <a href="../Views/v_home_admin.php" class="btn btn-secondary">
+                    <a href="c_data_aspirasi_admin.php" class="btn btn-secondary">
                         ← Kembali
                     </a>
                     <button type="submit" class="btn btn-success" name="gas_update">
